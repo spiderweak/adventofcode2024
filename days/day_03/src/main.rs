@@ -54,15 +54,15 @@ fn solve_01(input: &str) -> i32 {
 
 
 fn solve_02(input: &str) -> i32 {
-    let re = Regex::new(r"do\(\)*mul\(([0-9]+),([0-9]+)\)").unwrap();
 
-    let mut results = vec![];
-    for (_, [val_01, val_02]) in re.captures_iter(input).map(|c| c.extract()) {
-        results.push((val_01.parse::<i32>().ok().unwrap(), val_02.parse::<i32>().ok().unwrap()));
-    }
+    let dontdo = Regex::new(r"don't\(\).*?do\(\)").unwrap();
+    let dontend = Regex::new(r"don't\(\).*$").unwrap();
 
-    results
-    .iter()
-    .map(|(a,b)| a*b)
-    .sum()
+    // For whatever reasons the regexp stops maching at end of lines, so we get rid of those
+    let preprocessed_input = input.replace('\n', " ");
+
+    let temp_results: std::borrow::Cow<'_, str> = dontdo.replace_all(&preprocessed_input, "");
+    let results = dontend.replace_all(&temp_results, "");
+
+    solve_01(&results)
 }

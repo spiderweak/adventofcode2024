@@ -8,8 +8,6 @@ fn main() {
 
     match load_puzzle_example(day) {
         Ok(example) => {
-            // println!("Puzzle example for Day {}:\n{}", day, example);
-            // Not printing this anymore
             let (e_01, e_02) = solve(example);
             println!("Example, part 1 : {}", e_01);
             println!("Example, part 2 : {}", e_02);
@@ -22,8 +20,6 @@ fn main() {
     }
     match load_puzzle_input(day) {
         Ok(input) => {
-            // println!("Puzzle input for Day {}:\n{}", day, input);
-            // Not printing this anymore
             let (s_01, s_02) = solve(input);
             println!("Solution, part 1 : {}", s_01);
             println!("Solution, part 2 : {}", s_02);

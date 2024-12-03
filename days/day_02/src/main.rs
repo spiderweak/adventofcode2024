@@ -1,5 +1,3 @@
-use std::iter::Enumerate;
-
 use util::load_puzzle_example;
 use util::load_puzzle_input;
 

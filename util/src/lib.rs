@@ -1,6 +1,6 @@
 use std::fs;
 
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 /// Resolves the full path to the input file for a specific day.
 ///

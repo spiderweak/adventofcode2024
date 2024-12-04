@@ -59,7 +59,6 @@ fn load_data(input: &str) -> Matrix<char, Dyn, Dyn, nalgebra::VecStorage<char, D
 
 fn solve_01(input: &str) -> i32 {
     let input_matrix = load_data(input);
-
     let mut count_xmas = 0;
 
     // Original orientation
@@ -84,10 +83,9 @@ fn solve_02(input: &str) -> i32 {
 
 
 fn detect_xmas_01(matrix: &Matrix<char, Dyn, Dyn, nalgebra::VecStorage<char, Dyn, Dyn>>) -> i32{
-    let mut count_xmas = 0;
-
     let height = matrix.nrows();
     let width = matrix.ncols();
+    let mut count_xmas = 0;
 
     for y in 0..height {
         for x in 0..width-3 {
@@ -125,11 +123,9 @@ fn rotate_matrix(
 }
 
 fn detect_xmas_02(matrix: &Matrix<char, Dyn, Dyn, nalgebra::VecStorage<char, Dyn, Dyn>>) -> i32{
-
-    let mut count_xmas = 0;
-
     let height = matrix.nrows();
     let width = matrix.ncols();
+    let mut count_xmas = 0;
 
     for y in 1..height-1 {
         for x in 1..width-1 {
@@ -146,6 +142,5 @@ fn detect_xmas_02(matrix: &Matrix<char, Dyn, Dyn, nalgebra::VecStorage<char, Dyn
         }
     }
     count_xmas
-
 }
 

@@ -43,7 +43,7 @@ fn solve(input: String) -> (i32, i32) {
     return (s_01, s_02)
 }
 
-fn solve_01(input: &str) -> i32 {
+fn load_data(input: &str) -> Matrix<char, Dyn, Dyn, nalgebra::VecStorage<char, Dyn, Dyn>> {
     let height = input.trim().lines().count();
 
     let data: Vec<char> = input
@@ -54,7 +54,11 @@ fn solve_01(input: &str) -> i32 {
 
     let width = data.len() / height;
 
-    let input_matrix = DMatrix::from_vec(height, width, data);
+    DMatrix::from_vec(height, width, data)
+}
+
+fn solve_01(input: &str) -> i32 {
+    let input_matrix = load_data(input);
 
     let mut count_xmas = 0;
 
@@ -72,20 +76,12 @@ fn solve_01(input: &str) -> i32 {
 
 
 fn solve_02(input: &str) -> i32 {
-    let height = input.trim().lines().count();
-
-    let data: Vec<char> = input
-    .trim()
-    .chars()
-    .filter(|c| *c != '\n')
-    .collect();
-
-    let width = data.len() / height;
-
-    let input_matrix = DMatrix::from_vec(height, width, data);
+    let input_matrix = load_data(input);
 
     detect_xmas_02(&input_matrix)
 }
+
+
 
 fn detect_xmas_01(matrix: &Matrix<char, Dyn, Dyn, nalgebra::VecStorage<char, Dyn, Dyn>>) -> i32{
     let mut count_xmas = 0;
@@ -125,7 +121,6 @@ fn rotate_matrix(
             rotated[(x, height - y - 1)] = matrix[(y,x)];
         }
     }
-
     rotated
 }
 
